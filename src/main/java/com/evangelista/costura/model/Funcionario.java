@@ -1,11 +1,26 @@
 package com.evangelista.costura.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+@Entity
+@Table(name = "TB_FUNCIONARIO")
 public class Funcionario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotBlank
     private String nome;
+
+    @NotBlank
     private String funcao;
+
+    @NotBlank
     private Double salario;
+
+    @NotBlank
     private Integer pecasHora;
 
     public Long getId() {

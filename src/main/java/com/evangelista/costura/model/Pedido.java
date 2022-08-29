@@ -1,13 +1,32 @@
 package com.evangelista.costura.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "TB_PEDIDO")
 public class Pedido {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotBlank
     private String tipo;
+
+    @NotBlank
     private String marca;
+
+    @NotBlank
     private Double valorPeca;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate data;
 
     public Long getId() {
