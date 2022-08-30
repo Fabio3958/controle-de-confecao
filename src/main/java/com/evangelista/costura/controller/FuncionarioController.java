@@ -1,7 +1,7 @@
 package com.evangelista.costura.controller;
 
 import com.evangelista.costura.model.Funcionario;
-import com.evangelista.costura.repository.Repository;
+import com.evangelista.costura.model.services.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,29 +14,22 @@ import java.util.List;
 public class FuncionarioController {
 
     @Autowired
-    Repository repository;
+    FuncionarioService funcionarioService;
 
     // salva um funcionário no banco de dados
     @PostMapping("/gravarfuncionario")
-    public boolean postFuncionario(@RequestBody Funcionario funcionario){
+    public String postFuncionario(@RequestBody Funcionario funcionario){
 
-        Funcionario gravado = repository.save(funcionario);
+        Funcionario gravado = funcionarioService.save(funcionario);
 
-        if(gravado == null){
-            //nao gravou
-            return false;
-        }
-        else{
-            // gravou no banco com sucesso
-            return true;
-        }
+        return "Funcionário registrado";
 
     }
 
     // retorna uma lista de todos os funcionários
     @GetMapping("/funcionarios")
     public List<Funcionario> getFuncionario(){
-        return repository.findAll();
+        return funcionarioService.findAll();
     }
 
 }
