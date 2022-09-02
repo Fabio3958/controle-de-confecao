@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class PedidoController {
@@ -17,16 +18,12 @@ public class PedidoController {
 
     // registra um pedido
     @PostMapping("/gravarpedido")
-    public boolean gravarPedido(@RequestBody Pedido pedido){
+    public String gravarPedido(@RequestBody Pedido pedido){
 
         pedido.setData(LocalDate.now());
-        Pedido registrado = pedidoService.save(pedido);
+        pedidoService.save(pedido);
 
-        if (registrado == null){
-            return false;
-        }else{
-            return true;
-        }
+        return "Pedido registrado";
     }
 
     // retorna todos os pedidos
@@ -35,6 +32,22 @@ public class PedidoController {
 
         return pedidoService.findAll();
 
+    }
+
+    @PutMapping("/updatepedido/{id}")
+    public String putPedido(@PathVariable("id") Long id, @RequestBody Pedido pedido){
+
+        Optional<Pedido> pedById = pedidoService.findById(id);
+
+        if (pedById.isPresent()){
+            pedido.setTipo(pedido.getTipo());
+            pedido.setMarca(pedido.getMarca());
+            pedido.setValorPeca(pedido.getValorPeca());
+            pedido.setData(LocalDate.now());
+        }
+        pedidoService.save(pedido);
+
+        return "Pedido atualizado";
     }
 
     @DeleteMapping("/deletepedido/{id}")
