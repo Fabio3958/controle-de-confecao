@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Funcionário</title>
+</head>
+
+<body>
+
+    <div class="container" style="width: 60%; padding-bottom: 30px">
+
+    <header>
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1" style="font-weight: bold;">Funcionários</span>
+                <a href="#" style="text-decoration: none; padding-right: 30px; color: #7A7A7A;">Pedidos</a>
+        </nav>
+    </header>
+        <a href="#">
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+        <button type="button" class="btn btn-primary"
+                style="--bs-btn-padding-y: .7rem; --bs-btn-padding-x: 40%; --bs-btn-font-size: .75rem;">
+            Novo Funcionário
+        </button>
+        </div>
+        </a>
+    <section>
+
+        <div class="card" style="margin-top: 20px;" th:each="funcionario : ${funcionarios}">
+            <div class="card-body">
+
+                <p class="card-subtitle mb-2 text-muted" style="font-size: 1.2rem;">
+                    <span>Nome: </span>
+                    <span th:text="${funcionario.nome}"></span>
+                    <br>
+                    <span>Função: </span>
+                    <span th:text="${funcionario.funcao}"></span>
+                    <br>
+                    <span>Salário: </span>
+                    <span th:text="${funcionario.salario}"></span>
+                    <br>
+                    <span>Peças por hora: </span>
+                    <span th:text="${funcionario.pecasHora} ?: 'null'"></span>
+                </p>
+
+                <a>
+                    <h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;"></h4>
+                </a>
+
+
+            </div>
+        </div>
+    </section>
+    </div>
+
+</body>
+
+</html>

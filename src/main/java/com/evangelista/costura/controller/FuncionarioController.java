@@ -4,6 +4,7 @@ import com.evangelista.costura.model.Funcionario;
 import com.evangelista.costura.model.services.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,8 +27,11 @@ public class FuncionarioController {
 
     // retorna uma lista de todos os funcionários
     @GetMapping("/getfuncionarios")
-    public List<Funcionario> getFuncionarios(){
-        return funcionarioService.findAll();
+    public ModelAndView getFuncionarios(){
+        ModelAndView modelAndView = new ModelAndView("Funcionarios");
+        List<Funcionario> funcionarios = funcionarioService.findAll();
+        modelAndView.addObject("funcionarios", funcionarios);
+        return modelAndView;
     }
 
     // retorna um funcionário específico
