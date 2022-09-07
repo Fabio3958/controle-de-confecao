@@ -3,25 +3,38 @@ package com.evangelista.costura.controller;
 import com.evangelista.costura.model.Funcionario;
 import com.evangelista.costura.model.services.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 public class FuncionarioController {
 
     @Autowired
     FuncionarioService funcionarioService;
 
+    @GetMapping("/postfuncionario")
+    public String getNewFuncionario(){
+        return "NewFuncionario";
+    }
+
     // salva um funcionário no banco de dados
     @PostMapping("/postfuncionario")
-    public String postFuncionario(@RequestBody Funcionario funcionario){
+    public String postFuncionario(@Valid Funcionario funcionario, BindingResult result, RedirectAttributes redirectAttributes){
 
+        if (result.hasErrors()){
+            redirectAttributes.addFlashAttribute("m",
+                    "Verifique se os campos obrigatórios foram preenchidos.");
+            return "redirect:/postfuncionario";
+        }
         funcionarioService.save(funcionario);
-
-        return "Funcionário registrado";
+        return "redirect:/getfuncionarios";
 
     }
 

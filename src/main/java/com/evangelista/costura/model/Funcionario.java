@@ -20,7 +20,6 @@ public class Funcionario {
     @NotBlank
     private Double salario;
 
-    @NotBlank
     private Integer pecasHora;
 
     public Long getId() {
