@@ -19,6 +19,7 @@ public class FuncionarioController {
     @Autowired
     FuncionarioService funcionarioService;
 
+    // chama o template para o post
     @GetMapping("/postfuncionario")
     public String getNewFuncionario(){
         return "NewFuncionario";
@@ -71,10 +72,10 @@ public class FuncionarioController {
     }
 
     // deleta um funcionário específico
-    @DeleteMapping("/deletefuncionario/{id}")
+    @GetMapping("/deletefuncionario/{id}")
     public String deleteFuncionario(@PathVariable("id") Long id){
         funcionarioService.delete(id);
-        return "Funcionário apagado";
+        return "redirect:/getfuncionarios";
     }
 
 }

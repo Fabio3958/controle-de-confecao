@@ -46,11 +46,9 @@
                     <span>Peças por hora: </span>
                     <span th:text="${funcionario.pecasHora} ?: 'null'"></span>
                 </p>
-
-                <a>
-                    <h4 class="card-title" style="font-weight: bold; color: black; padding-top: 5px;"></h4>
+                <a th:href="@{'/deletefuncionario/{id}'(id=${funcionario.id})}">
+                <button type="button" class="btn btn-danger">Deletar</button>
                 </a>
-
 
             </div>
         </div>
