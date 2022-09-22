@@ -50,26 +50,13 @@ public class FuncionarioController {
 
     // retorna um funcionário específico
     @GetMapping("/getfuncionario/{id}")
-    public Optional<Funcionario> getFuncionarioById(@PathVariable("id") Long id){
-        return funcionarioService.findById(id);
+    public ModelAndView getFuncionarioById(@PathVariable("id") Long id){
+        ModelAndView modelAndView = new ModelAndView("FuncionarioEspecifico");
+        Optional<Funcionario> funcionario = funcionarioService.findById(id);
+        funcionarioService.findById(id).ifPresent(o -> modelAndView.addObject("funcionario", o));
+        return modelAndView;
     }
 
-    // edita as informações de um funcionário específico
-    @PutMapping("/updatefuncionario/{id}")
-    public String putFuncionario(@PathVariable("id") Long id, @RequestBody Funcionario funcionario){
-
-        Optional<Funcionario> funcById = funcionarioService.findById(id);
-
-        if (funcById.isPresent()){
-            funcionario.setNome(funcionario.getNome());
-            funcionario.setFuncao(funcionario.getFuncao());
-            funcionario.setSalario(funcionario.getSalario());
-            funcionario.setPecasHora(funcionario.getPecasHora());
-        }
-        funcionarioService.save(funcionario);
-
-        return "Funcionário atualizado";
-    }
 
     // deleta um funcionário específico
     @GetMapping("/deletefuncionario/{id}")

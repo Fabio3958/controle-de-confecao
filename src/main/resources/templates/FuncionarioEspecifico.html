@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Funcionário</title>
+</head>
+
+<body>
+
+<p class="card-subtitle mb-2 text-muted" style="font-size: 1.2rem;">
+    <span>Nome: </span>
+    <span th:text="${funcionario.nome}"></span>
+    <br>
+    <span>Função: </span>
+    <span th:text="${funcionario.funcao}"></span>
+    <br>
+    <span>Salário: </span>
+    <span th:text="${funcionario.salario}"></span>
+    <br>
+    <span>Peças por hora: </span>
+    <span th:text="${funcionario.pecasHora} ?: 'null'"></span>
+</p>
+
+</body>
+
+</html>
