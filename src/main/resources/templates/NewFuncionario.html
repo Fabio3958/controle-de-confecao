@@ -27,27 +27,32 @@
   </header>
 
   <div>
+    <form th:action="@{/postfuncionario}" th:object="${funcionario}" method="post" class="form">
 
-    <th:block th:include="MensagemValidacao"></th:block>
-    <form method="post">
-
-      <div class="formGroup">
-        <input type="text" class="form-control" name="nome" placeholder="Nome *">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input class="form-control" type="text" th:field="*{nome}" id="nome" placeholder="Nome *">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
       </div>
-      <div class="formGroup">
-        <input type="text" class="form-control" style="margin-top: 10px;" name="funcao" placeholder="Função *">
+      <div class="form-group">
+        <label for="funcao">Função</label>
+        <input class="form-control" type="text" th:field="*{funcao}" id="funcao" placeholder="Função *">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('funcao')}" th:errors="*{funcao}"></div>
       </div>
-      <div class="formGroup">
-        <input type="number" step="0.01" class="form-control" style="margin-top: 10px;" name="salario" placeholder="Salário *">
+      <div class="form-group">
+        <label for="salario">Salário</label>
+        <input class="form-control" type="number" step="0.01" th:field="*{salario}" id="salario" placeholder="Salário *">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}"></div>
       </div>
-      <div class="formGroup">
-        <input type="text" class="form-control" style="margin-top: 10px;" name="pecasHora" placeholder="Peças por hora">
+      <div class="form-group">
+        <label for="pecasHora">Peças Por Hora</label>
+        <input class="form-control" type="number" th:field="*{pecasHora}" id="pecasHora" placeholder="Peças Por Hora">
       </div>
 
       <small class="form-text text-muted">(*) Campos obrigatórios</small>
 
       <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Criar</button>
-      <a href="/getfuncionarios" class="btn btn-light" role="button" style="margin-top: 10px;">Cancelar</a>
+      <a href="/getfuncionarios" class="btn btn-success" role="button" style="margin-top: 10px;">Cancelar</a>
     </form>
 
   </div>

@@ -1,7 +1,8 @@
 package com.evangelista.costura.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "TB_FUNCIONARIO")
@@ -11,13 +12,13 @@ public class Funcionario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank
+    @NotEmpty(message = "O campo deve ser preenchido corretamente.")
     private String nome;
 
-    @NotBlank
+    @NotEmpty(message = "O campo deve ser preenchido corretamente.")
     private String funcao;
 
-    @NotBlank
+    @NotNull
     private Double salario;
 
     private Integer pecasHora;
