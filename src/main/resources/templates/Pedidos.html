@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Pedidos</title>
+</head>
+
+<body>
+
+<div class="container" style="width: 60%; padding-bottom: 30px">
+
+    <header>
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1" style="font-weight: bold;">Pedidos</span>
+            <a href="/getfuncionarios" style="text-decoration: none; padding-right: 30px; color: #7A7A7A;">Funcionários</a>
+        </nav>
+    </header>
+    <a href="/postpedido">
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+            <button type="button" class="btn btn-primary"
+                    style="--bs-btn-padding-y: .7rem; --bs-btn-padding-x: 40%; --bs-btn-font-size: .75rem;">
+                Novo Pedido
+            </button>
+        </div>
+    </a>
+    <section>
+
+        <div class="card" style="margin-top: 20px;" th:each="pedido : ${pedidos}">
+            <div class="card-body">
+
+                <p class="card-subtitle mb-2 text-muted" style="font-size: 1.2rem;">
+                    <span>Tipo: </span>
+                    <span th:text="${pedido.tipo}"></span>
+                    <br>
+                    <span>Marca: </span>
+                    <span th:text="${pedido.marca}"></span>
+                    <br>
+                    <span>Valor Por Peça: </span>
+                    <span th:text="${pedido.valorPeca}"></span>
+                    <br>
+                    <span>Data: </span>
+                    <span th:text="${pedido.data}"></span>
+                </p>
+                <a th:href="@{'/deletepedido/{id}'(id=${pedido.id})}">
+                    <button type="button" class="btn btn-danger">Deletar</button>
+                </a>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+
+</html>
