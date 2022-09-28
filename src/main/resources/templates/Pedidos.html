@@ -35,7 +35,7 @@
 
                 <p class="card-subtitle mb-2 text-muted" style="font-size: 1.2rem;">
                     <span>Tipo: </span>
-                    <span th:text="${pedido.tipo}"></span>
+                    <span th:text="${pedido.corte}"></span>
                     <br>
                     <span>Marca: </span>
                     <span th:text="${pedido.marca}"></span>
@@ -45,6 +45,12 @@
                     <br>
                     <span>Data: </span>
                     <span th:text="${pedido.data}"></span>
+                    <br>
+                    <span>Prazo: </span>
+                    <span th:text="${pedido.prazo}"></span>
+                    <br>
+                    <span>Status: </span>
+                    <span th:text="${pedido.status}"></span>
                 </p>
                 <a th:href="@{'/deletepedido/{id}'(id=${pedido.id})}">
                     <button type="button" class="btn btn-danger">Deletar</button>

@@ -6,8 +6,10 @@ import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "TB_PEDIDO")
@@ -17,17 +19,22 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank
-    private String tipo;
+    @NotEmpty
+    private String corte;
 
-    @NotBlank
+    @NotEmpty
     private String marca;
 
-    @NotBlank
+    @NotNull
     private Double valorPeca;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
+    private Date data;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private LocalDate data;
+    private Date prazo;
+
+    private String status;
 
     public Long getId() {
         return id;
@@ -37,12 +44,12 @@ public class Pedido {
         this.id = id;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getCorte() {
+        return corte;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setCorte(String corte) {
+        this.corte = corte;
     }
 
     public String getMarca() {
@@ -61,11 +68,27 @@ public class Pedido {
         this.valorPeca = valorPeca;
     }
 
-    public LocalDate getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(Date data) {
         this.data = data;
+    }
+
+    public Date getPrazo() {
+        return prazo;
+    }
+
+    public void setPrazo(Date prazo) {
+        this.prazo = prazo;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

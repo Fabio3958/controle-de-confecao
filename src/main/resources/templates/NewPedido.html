@@ -27,18 +27,27 @@
     </header>
 
     <div>
+        <form th:action="@{/postpedido}" th:object="${pedido}" method="post" class="form">
 
-        <th:block th:include="MensagemValidacao"></th:block>
-        <form method="post">
-
-            <div class="formGroup">
-                <input type="text" class="form-control" name="tipo" placeholder="Tipo *">
+            <div class="form-group">
+                <label for="corte">Corte</label>
+                <input class="form-control" type="text" th:field="*{corte}" id="corte" placeholder="Corte *">
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('corte')}" th:errors="*{corte}"></div>
             </div>
-            <div class="formGroup">
-                <input type="text" class="form-control" style="margin-top: 10px;" name="marca" placeholder="Marca *">
+            <div class="form-group">
+                <label for="marca">Marca</label>
+                <input class="form-control" type="text" th:field="*{marca}" id="marca" placeholder="Marca *">
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></div>
             </div>
-            <div class="formGroup">
-                <input type="number" step="0.01" class="form-control" style="margin-top: 10px;" name="valorPeca" placeholder="Valor Por Peça *">
+            <div class="form-group">
+                <label for="valorPeca">Valor Por Peça</label>
+                <input class="form-control" type="text" th:field="*{valorPeca}" id="valorPeca" placeholder="Valor Por Peça *">
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('valorPeca')}" th:errors="*{valorPeca}"></div>
+            </div>
+            <div class="form-group">
+                <label for="prazo">Prazo</label>
+                <input class="form-control" type="date" th:field="*{prazo}" id="prazo" placeholder="Prazo *">
+                <div class="alert alert-warning" th:if="${#fields.hasErrors('prazo')}" th:errors="*{prazo}"></div>
             </div>
 
             <small class="form-text text-muted">(*) Campos obrigatórios</small>
@@ -46,7 +55,6 @@
             <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Criar</button>
             <a href="/getpedidos" class="btn btn-light" role="button" style="margin-top: 10px;">Cancelar</a>
         </form>
-
     </div>
 
 </div>
