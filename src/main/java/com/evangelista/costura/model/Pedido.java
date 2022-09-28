@@ -1,6 +1,7 @@
 package com.evangelista.costura.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.persistence.GeneratedValue;
@@ -28,11 +29,12 @@ public class Pedido {
     @NotNull
     private Double valorPeca;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
-    private Date data;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private Date prazo;
+    private LocalDate data;
+
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate prazo;
 
     private String status;
 
@@ -68,19 +70,19 @@ public class Pedido {
         this.valorPeca = valorPeca;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
-    public Date getPrazo() {
+    public LocalDate getPrazo() {
         return prazo;
     }
 
-    public void setPrazo(Date prazo) {
+    public void setPrazo(LocalDate prazo) {
         this.prazo = prazo;
     }
 

@@ -34,7 +34,7 @@ public class PedidoController {
         if (result.hasErrors()){
             return "NewPedido";
         }
-        pedido.setData(Date.from(Instant.now()));
+        pedido.setData(LocalDate.now());
         pedido.setStatus("Ativo");
         pedidoService.save(pedido);
         return "redirect:/getpedidos";
